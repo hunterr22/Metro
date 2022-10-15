@@ -8,16 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CUSTOMERS")
+@Table(name = "CUSTOMERS")
 public class Customer {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
-	
-	@Column(name="CUSTOMER_NAME")
+	@Column(name = "CUSTOMER_NAME")
 	String name;
-	
+	String password;
 	String email;
+
+	public Customer(long id, String name, String password, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+	}
 
 	public long getId() {
 		return id;
@@ -42,5 +49,5 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 }

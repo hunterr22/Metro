@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ import com.metro.domain.Customer;
 import com.metro.repository.CustomersRepository;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/customers")
 public class CustomerAPI {
 
 	@Autowired
@@ -46,9 +47,7 @@ public class CustomerAPI {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newCustomer.getId()).toUri();
 
-		ResponseEntity<?> response = ResponseEntity.created(location).build();
-
-		return response;
+		return ResponseEntity.created(location).build();
 	}
 
 	@PutMapping("/{customerId}")
@@ -58,9 +57,16 @@ public class CustomerAPI {
 		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null) {
 			return ResponseEntity.badRequest().build();
 		}
-		
-		newCustomer = repo.save(newCustomer);
-		
+
+		repo.save(newCustomer);
+
+		return ResponseEntity.ok().build();
+	}
+
+	@DeleteMapping("/{customerId}")
+	public ResponseEntity<?> deleteCustomer(@PathVariable("customerId") long id) {
+		repo.deleteById(id); // can also delete by Customer type, should we add another method?
+
 		return ResponseEntity.ok().build();
 	}
 }

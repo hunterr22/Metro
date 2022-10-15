@@ -5,26 +5,26 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.metro.domain.Purchase;
-import com.metro.repository.PurchaseRepository;
+import com.metro.domain.Events;
+import com.metro.repository.EventsRepository;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
 	@Autowired
-	private PurchaseRepository repo;
+	private EventsRepository repo;
 
 
-	public void savePurchase(Purchase purchase) {
+	public void savePurchase(Events purchase) {
 		repo.save(purchase);
 	}
 
 
-	public Iterable<Purchase> findAllPurchases() {
+	public Iterable<Events> findAllPurchases() {
 		return repo.findAll();
 	}
 
 
-	public Optional<Purchase> findPurchaseById(long id) {
+	public Optional<Events> findPurchaseById(long id) {
 		return repo.findById(id);
 	}
 
