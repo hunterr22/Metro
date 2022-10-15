@@ -19,48 +19,37 @@ import com.metro.domain.Customer;
 import com.metro.repository.CustomersRepository;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/customers")
 public class CustomerAPI {
 
-	@Autowired
-	CustomersRepository repo;
+	ArrayList<Customer> cList = new ArrayList<Customer>();
 
+	public CustomerAPI() {
+		Customer c1 = new Customer(1, "Hampton", "pass", "Hampton@bah.com");
+		Customer c2 = new Customer(2, "Fox", "pass", "Fox@bah.com");
+		Customer c3 = new Customer(3, "Cameron", "pass", "Cameron@bah.com");
+		Customer c4 = new Customer(4, "MICK", "pass", "MICK@bah.com");
+		
+		cList.add(c1);
+		cList.add(c2);
+		cList.add(c3);
+		cList.add(c4);
+	}
+	
 	@GetMapping
-	public Iterable<Customer> getAll() {
-		return repo.findAll();
+	public Collection<Customer> getAll() {
+		return this.cList;
 	}
 
 	@GetMapping("/{customerId}")
-	public Optional<Customer> getCustomerById(@PathVariable("customerId") long id) {
-		return repo.findById(id);
-	}
-
-	@PostMapping
-	public ResponseEntity<?> addCustomer(@RequestBody Customer newCustomer, UriComponentsBuilder uri) {
-		if (newCustomer.getId() != 0 || newCustomer.getName() == null || newCustomer.getEmail() == null) {
-			return ResponseEntity.badRequest().build(); // Reject - we'll assign the customer id
-		}
-
-		newCustomer = repo.save(newCustomer);
-
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(newCustomer.getId()).toUri();
-
-		ResponseEntity<?> response = ResponseEntity.created(location).build();
-
-		return response;
-	}
-
-	@PutMapping("/{customerId}")
-	public ResponseEntity<?> putCustomer(@RequestBody Customer newCustomer,
-			@PathVariable("customerId") long customerId) {
-
-		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null) {
-			return ResponseEntity.badRequest().build();
-		}
+	public Customer getCustomerById(@PathVariable("customerId") long id) {
 		
-		newCustomer = repo.save(newCustomer);
-		
-		return ResponseEntity.ok().build();
+		Customer customer = null;
+		for (int i = 0; i < cList.size(); i++) {
+			if (cList.get(i).getId() == id) {
+				customer = cList.get(i);
+			}
+		}
+		return customer;
 	}
 }
