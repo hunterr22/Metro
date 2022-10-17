@@ -13,10 +13,19 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
+
 	@Column(name = "CUSTOMER_NAME")
 	String name;
+
+	@Column(name = "PASSWORD")
 	String password;
+
+	@Column(name = "EMAIL")
 	String email;
+
+	public Customer() {
+		// Default constructor
+	}
 
 	public Customer(long id, String name, String password, String email) {
 		super();
