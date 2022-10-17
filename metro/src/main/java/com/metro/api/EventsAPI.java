@@ -38,7 +38,8 @@ public class EventsAPI {
 
 	@PostMapping
 	public ResponseEntity<?> addEvent(@RequestBody Events newEvent, UriComponentsBuilder uri) {
-		if (newEvent.getId() != 0 || newEvent.getCode() == null || newEvent.getTitle() == null || newEvent.getDescription() == null) {
+		if (newEvent.getId() != 0 || newEvent.getCode() == null || newEvent.getTitle() == null
+				|| newEvent.getDescription() == null) {
 			return ResponseEntity.badRequest().build(); // Reject - we'll assign the event id
 		}
 
@@ -52,9 +53,10 @@ public class EventsAPI {
 
 	@PutMapping("/{eventId}")
 	public ResponseEntity<?> putEvent(@RequestBody Events newEvent,
-			@PathVariable("eventId") long customerId) {
+			@PathVariable("eventId") long eventId) {
 
-		if (newEvent.getId() != 0 || newEvent.getCode() == null || newEvent.getTitle() == null || newEvent.getDescription() == null) {
+		if (newEvent.getId() != 0 || newEvent.getCode() == null || newEvent.getTitle() == null
+				|| newEvent.getDescription() == null) {
 			return ResponseEntity.badRequest().build();
 		}
 
@@ -67,6 +69,6 @@ public class EventsAPI {
 	public ResponseEntity<?> deleteEvent(@PathVariable("eventId") long id) {
 		repo.deleteById(id); // can also delete by Events entity type, should we add another method?
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 }

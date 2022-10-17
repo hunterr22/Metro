@@ -38,7 +38,7 @@ public class RegistrationsAPI {
 
     @PostMapping
     public ResponseEntity<?> addRegistration(@RequestBody Registrations newRegistration, UriComponentsBuilder uri) {
-        if (newRegistration.getId() != 0 || newRegistration.getRegistrationName() == null
+        if (newRegistration.getId() != 0 || newRegistration.getCustomerId() != 0 || newRegistration.getEventId() != 0
                 || newRegistration.getRegistrationDate() == null || newRegistration.getRegistrationNotes() == null) {
             return ResponseEntity.badRequest().build(); // Reject - we'll assign the registration id
         }
@@ -51,11 +51,11 @@ public class RegistrationsAPI {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/{registrationId}")
+    @PutMapping("/{eventId}")
     public ResponseEntity<?> putRegistration(@RequestBody Registrations newRegistration,
-            @PathVariable("registrationId") long customerId) {
+            @PathVariable("eventId") long eventId) {
 
-        if (newRegistration.getId() != 0 || newRegistration.getRegistrationName() == null
+        if (newRegistration.getId() != 0 || newRegistration.getCustomerId() != 0 || newRegistration.getEventId() != 0
                 || newRegistration.getRegistrationDate() == null || newRegistration.getRegistrationNotes() == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -65,10 +65,10 @@ public class RegistrationsAPI {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{registrationId}")
-    public ResponseEntity<?> deleteRegistration(@PathVariable("registrationId") long id) {
+    @DeleteMapping("/{eventId}")
+    public ResponseEntity<?> deleteRegistration(@PathVariable("eventId") long id) {
         repo.deleteById(id); // can also delete by Registration entity type, should we add another method?
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }
