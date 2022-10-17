@@ -1,6 +1,10 @@
 .App {
-  padding: 10px;
+  padding: auto;
   width: 500px;
+  margin-top: 200px;
+  align-items: center;
+  justify-content: 'center';
+  align-self: center;
 }
 
 
@@ -23,6 +27,13 @@ ul {
   list-style: none;
 }
 
-.card{
+.card {
   margin-bottom: 10px;
+}
+
+.centered-div {
+  padding: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

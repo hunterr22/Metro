@@ -16,7 +16,7 @@ function CustomersModule() {
   return (
     <div>
       <CustomerList></CustomerList>
-      <CustomerForm></CustomerForm>     
+      <CustomerForm></CustomerForm>
     </div>
   );
 }
@@ -27,7 +27,7 @@ function EventsModule() {
       <NavLinks></NavLinks>
       <EventList></EventList>
       <EventForm></EventForm>
-      <Footer></Footer>      
+      <Footer></Footer>
     </div>
   );
 }
@@ -52,54 +52,73 @@ function HomePage() {
 }
 
 
-function NavLinks(){
+function NavLinks() {
   return (
-    <nav>
-    <Link type='button' className='button btn-primary btn-lg' to="/customers">Customers</Link>
-    <Link type='button' className='button btn-primary btn-lg'  to="/events">Events</Link>
-    <Link type='button' className='button btn-primary btn-lg' to="/registrations">Registrations</Link>
+    <nav className='centered-div'>
+      <Link type='button' className='button btn-primary btn-lg' to="/customers">Customers</Link>
+      <Link type='button' className='button btn-primary btn-lg' to="/events">Events</Link>
+      <Link type='button' className='button btn-primary btn-lg' to="/registrations">Registrations</Link>
     </nav>
   );
 }
 
-function compare(a, b){
+function compare(a, b) {
   // console.log("a :" + a);
   // console.log("b :" + b);
   return (a === b);
 }
 
-function Custom(props){
+function Custom(props) {
 
-  if(  compare(props.login.loginstate, 'logged-in')){
+  if (compare(props.login.loginstate, 'logged-in')) {
     console.log("NOT loggedin");
-    return ( 
+    return (
       <Login></Login>
     );
-  }else{
+  } else {
     console.log("YES loggedin");
     return (
       <div>
-    <Route exact path="/" render={() => (<Redirect to="/customers"/>)}/>
-    <Route path="/login" component={Login} />
-    <Route path="/home" component={HomePage} />
-    <Route path="/customers" component={CustomersModule} />
-    <Route path="/events" component={EventsModule} />
-    <Route path="/registrations" component={RegistrationsModule} />
-    </div>
+        <Route exact path="/" render={() => (<Redirect to="/customers" />)} />
+        <Route path="/login" component={Login} />
+        <Route path="/home" component={HomePage} />
+        <Route path="/customers" component={CustomersModule} />
+        <Route path="/events" component={EventsModule} />
+        <Route path="/registrations" component={RegistrationsModule} />
+      </div>
     )
-    
+
   }
 
 }
 
+function Center({ children }) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
-function App({login}) {
+
+function App({ login }) {
   return (
     <Router>
-    <div className="App">
-        <h1>Customer CRUD App</h1>
-        <Custom login={login} />
-    </div>
+      <Center>
+        <div className='App'>
+
+          <h1 className='centered-div'>Customer CRUD App</h1>
+          <br />
+          <Custom login={login} />
+
+        </div>
+      </Center>
     </Router>
   );
 }
@@ -112,10 +131,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { 
+  return {
     onInit: (e) => {
       console.log("in app component");
-    }            
+    }
   }
 }
 
