@@ -1,22 +1,31 @@
 package com.metro.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PURCHASES")
+@Table(name = "EVENTS")
 public class Events {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
-	// @ManyToOne
+
+	@Column(name = "EVENT_CODE")
 	String code;
+
+	@Column(name = "TITLE")
 	String title;
+
+	@Column(name = "DESCRIPTION")
 	String description;
+
+	public Events() {
+		// Default constructor
+	}
 
 	public Events(int id, String code, String title, String description) {
 		super();
