@@ -38,8 +38,8 @@ public class RegistrationsAPI {
 
     @PostMapping
     public ResponseEntity<?> addRegistration(@RequestBody Registrations newRegistration, UriComponentsBuilder uri) {
-        if (newRegistration.getId() != 0 || newRegistration.getCustomerId() != 0 || newRegistration.getEventId() != 0
-                || newRegistration.getRegistrationDate() == null || newRegistration.getRegistrationNotes() == null) {
+        if (newRegistration.getId() != 0 || newRegistration.getRegistrationDate() == null
+                || newRegistration.getRegistrationNotes() == null) {
             return ResponseEntity.badRequest().build(); // Reject - we'll assign the registration id
         }
 
@@ -51,12 +51,12 @@ public class RegistrationsAPI {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/{eventId}")
+    @PutMapping("/{event_id}")
     public ResponseEntity<?> putRegistration(@RequestBody Registrations newRegistration,
-            @PathVariable("eventId") long eventId) {
+            @PathVariable("event_id") long event_id) {
 
-        if (newRegistration.getId() != 0 || newRegistration.getCustomerId() != 0 || newRegistration.getEventId() != 0
-                || newRegistration.getRegistrationDate() == null || newRegistration.getRegistrationNotes() == null) {
+        if (newRegistration.getEventId() != event_id || newRegistration.getRegistrationDate() == null
+                || newRegistration.getRegistrationNotes() == null) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -65,8 +65,8 @@ public class RegistrationsAPI {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{eventId}")
-    public ResponseEntity<?> deleteRegistration(@PathVariable("eventId") long id) {
+    @DeleteMapping("/{event_id}")
+    public ResponseEntity<?> deleteRegistration(@PathVariable("event_id") long id) {
         repo.deleteById(id); // can also delete by Registration entity type, should we add another method?
 
         return ResponseEntity.noContent().build();

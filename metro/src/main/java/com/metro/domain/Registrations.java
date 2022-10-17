@@ -19,43 +19,43 @@ public class Registrations {
     // Customer customer;
 
     @Column(name = "EVENT_ID")
-    long eventId;
+    long event_id;
 
     @Column(name = "CUSTOMER_ID")
-    long customerId;
+    long customer_id;
 
     @Column(name = "REGISTRATION_DATE")
-    Date registrationDate;
+    Date registration_date;
 
     @Column(name = "NOTES")
-    String registrationNotes;
+    String notes;
 
     public Registrations() {
         // Default constructor
     }
 
-    public Registrations(long id, long eventId, long customerId, Date registrationDate, String registrationNotes) {
+    public Registrations(long id, long event_id, long customer_id, Date registration_date, String notes) {
         this.id = id;
-        this.eventId = eventId;
-        this.customerId = customerId;
-        this.registrationDate = registrationDate;
-        this.registrationNotes = registrationNotes;
+        this.event_id = event_id;
+        this.customer_id = customer_id;
+        this.registration_date = registration_date;
+        this.notes = notes;
     }
 
     public long getEventId() {
-        return eventId;
+        return event_id;
     }
 
-    public void setEventId(long eventId) {
-        this.eventId = eventId;
+    public void setEventId(long event_id) {
+        this.event_id = event_id;
     }
 
     public long getCustomerId() {
-        return customerId;
+        return customer_id;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
+    public void setCustomerId(long customer_id) {
+        this.customer_id = customer_id;
     }
 
     public long getId() {
@@ -67,19 +67,19 @@ public class Registrations {
     }
 
     public Date getRegistrationDate() {
-        return registrationDate;
+        return registration_date;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRegistrationDate(Date registration_date) {
+        this.registration_date = registration_date;
     }
 
     public String getRegistrationNotes() {
-        return registrationNotes;
+        return notes;
     }
 
-    public void setRegistrationNotes(String registrationNotes) {
-        this.registrationNotes = registrationNotes;
+    public void setRegistrationNotes(String notes) {
+        this.notes = notes;
     }
 
 }

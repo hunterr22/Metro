@@ -31,8 +31,8 @@ public class EventsAPI {
 		return repo.findAll();
 	}
 
-	@GetMapping("/{eventId}")
-	public Optional<Events> getEventById(@PathVariable("eventId") long id) {
+	@GetMapping("/{event_id}")
+	public Optional<Events> getEventById(@PathVariable("event_id") long id) {
 		return repo.findById(id);
 	}
 
@@ -51,11 +51,11 @@ public class EventsAPI {
 		return ResponseEntity.created(location).build();
 	}
 
-	@PutMapping("/{eventId}")
+	@PutMapping("/{event_id}")
 	public ResponseEntity<?> putEvent(@RequestBody Events newEvent,
-			@PathVariable("eventId") long eventId) {
+			@PathVariable("event_id") long event_id) {
 
-		if (newEvent.getId() != 0 || newEvent.getCode() == null || newEvent.getTitle() == null
+		if (newEvent.getId() != event_id || newEvent.getCode() == null || newEvent.getTitle() == null
 				|| newEvent.getDescription() == null) {
 			return ResponseEntity.badRequest().build();
 		}
@@ -65,8 +65,8 @@ public class EventsAPI {
 		return ResponseEntity.ok().build();
 	}
 
-	@DeleteMapping("/{eventId}")
-	public ResponseEntity<?> deleteEvent(@PathVariable("eventId") long id) {
+	@DeleteMapping("/{event_id}")
+	public ResponseEntity<?> deleteEvent(@PathVariable("event_id") long id) {
 		repo.deleteById(id); // can also delete by Events entity type, should we add another method?
 
 		return ResponseEntity.noContent().build();
