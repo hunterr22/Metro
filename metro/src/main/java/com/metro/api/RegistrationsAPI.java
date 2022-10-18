@@ -38,8 +38,8 @@ public class RegistrationsAPI {
 
     @PostMapping
     public ResponseEntity<?> addRegistration(@RequestBody Registrations newRegistration, UriComponentsBuilder uri) {
-        if (newRegistration.getId() != 0 || newRegistration.getRegistrationName() == null
-                || newRegistration.getRegistrationDate() == null || newRegistration.getRegistrationNotes() == null) {
+        if (newRegistration.getId() != 0 || newRegistration.getRegistration_date() == null
+                || newRegistration.getNotes() == null) {
             return ResponseEntity.badRequest().build(); // Reject - we'll assign the registration id
         }
 
@@ -51,12 +51,12 @@ public class RegistrationsAPI {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/{registrationId}")
+    @PutMapping("/{event_id}")
     public ResponseEntity<?> putRegistration(@RequestBody Registrations newRegistration,
-            @PathVariable("registrationId") long customerId) {
+            @PathVariable("event_id") long event_id) {
 
-        if (newRegistration.getId() != 0 || newRegistration.getRegistrationName() == null
-                || newRegistration.getRegistrationDate() == null || newRegistration.getRegistrationNotes() == null) {
+        if (newRegistration.getEvent_id() != event_id || newRegistration.getRegistration_date() == null
+                || newRegistration.getNotes() == null) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -65,10 +65,10 @@ public class RegistrationsAPI {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{registrationId}")
-    public ResponseEntity<?> deleteRegistration(@PathVariable("registrationId") long id) {
+    @DeleteMapping("/{event_id}")
+    public ResponseEntity<?> deleteRegistration(@PathVariable("event_id") long id) {
         repo.deleteById(id); // can also delete by Registration entity type, should we add another method?
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

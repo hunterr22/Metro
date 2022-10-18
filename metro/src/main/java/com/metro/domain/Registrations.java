@@ -2,6 +2,7 @@ package com.metro.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,18 +14,24 @@ public class Registrations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String registrationName;
-    @ManyToOne
-    Customer customer;
-    Date registrationDate;
-    String registrationNotes;
 
-    public Registrations(long id, String registrationName, Date registrationDate, String registrationNotes) {
-        super();
-        this.id = id;
-        this.registrationName = registrationName;
-        this.registrationDate = registrationDate;
-        this.registrationNotes = registrationNotes;
+    // @ManyToOne
+    // Customer customer;
+
+    @Column(name = "EVENT_ID")
+    long event_id;
+
+    @Column(name = "CUSTOMER_ID")
+    long customer_id;
+
+    @Column(name = "REGISTRATION_DATE")
+    Date registration_date;
+
+    @Column(name = "NOTES")
+    String notes;
+
+    public Registrations() {
+        // Default constructor
     }
 
     public long getId() {
@@ -35,28 +42,36 @@ public class Registrations {
         this.id = id;
     }
 
-    public String getRegistrationName() {
-        return registrationName;
+    public long getEvent_id() {
+        return event_id;
     }
 
-    public void setRegistrationName(String registrationName) {
-        this.registrationName = registrationName;
+    public void setEvent_id(long event_id) {
+        this.event_id = event_id;
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public long getCustomer_id() {
+        return customer_id;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setCustomer_id(long customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public String getRegistrationNotes() {
-        return registrationNotes;
+    public Date getRegistration_date() {
+        return registration_date;
     }
 
-    public void setRegistrationNotes(String registrationNotes) {
-        this.registrationNotes = registrationNotes;
+    public void setRegistration_date(Date registration_date) {
+        this.registration_date = registration_date;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
 }
