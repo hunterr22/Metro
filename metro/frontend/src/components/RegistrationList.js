@@ -24,24 +24,24 @@ class RegistrationList extends React.Component {
     }).isRequired).isRequired
   }
 
-  lookupEventTitle( event_id ){
-    
-    for(let id in this.props.events){
+  lookupEventTitle(event_id) {
+
+    for (let id in this.props.events) {
       let item = this.props.events[id];
-      if( item.id === event_id){
+      if (item.id === event_id) {
         return item.title;
       }
     }
     return 'event-title';
   }
 
-  lookupCustomerName( customer_id ){
-    for(let id in this.props.customers){
+  lookupCustomerName(customer_id) {
+    for (let id in this.props.customers) {
       let customer = this.props.customers[id];
-      if( customer.id === customer_id){
+      if (customer.id === customer_id) {
         return customer.name;
       }
-    }    
+    }
     return 'customer-name';
   }
 
@@ -69,10 +69,10 @@ class RegistrationList extends React.Component {
           }
         </tbody></table>
         <hr></hr>
-        <p style={{'paddingLeft':'10px'}}>
-        <input style={{width:'fit-content'}} className='btn btn-primary'  type={'button'} onClick={this.props.handleNewRegistrationClick} value="New Registration" />
-          </p>         
-        
+        <p style={{ 'paddingLeft': '10px' }}>
+          <input style={{ width: 'fit-content' }} className='btn btn-primary' type={'button'} onClick={this.props.handleNewRegistrationClick} value="New Registration" />
+        </p>
+
       </div>
     )
   }

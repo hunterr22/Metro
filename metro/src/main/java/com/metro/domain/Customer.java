@@ -27,12 +27,12 @@ public class Customer {
 		// Default constructor
 	}
 
-	public Customer(long id, String name, String password, String email) {
-		super();
-		this.id = id;
-		this.name = name;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
 		this.password = password;
-		this.email = email;
 	}
 
 	public String toJSON() {
