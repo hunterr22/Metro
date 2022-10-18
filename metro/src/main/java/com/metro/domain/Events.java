@@ -27,14 +27,6 @@ public class Events {
 		// Default constructor
 	}
 
-	public Events(int id, String code, String title, String description) {
-		super();
-		this.id = id;
-		this.code = code;
-		this.title = title;
-		this.description = description;
-	}
-
 	public long getId() {
 		return id;
 	}
