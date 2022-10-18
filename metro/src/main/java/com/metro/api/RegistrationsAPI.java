@@ -38,8 +38,8 @@ public class RegistrationsAPI {
 
     @PostMapping
     public ResponseEntity<?> addRegistration(@RequestBody Registrations newRegistration, UriComponentsBuilder uri) {
-        if (newRegistration.getId() != 0 || newRegistration.getRegistrationDate() == null
-                || newRegistration.getRegistrationNotes() == null) {
+        if (newRegistration.getId() != 0 || newRegistration.getRegistration_date() == null
+                || newRegistration.getNotes() == null) {
             return ResponseEntity.badRequest().build(); // Reject - we'll assign the registration id
         }
 
@@ -55,8 +55,8 @@ public class RegistrationsAPI {
     public ResponseEntity<?> putRegistration(@RequestBody Registrations newRegistration,
             @PathVariable("event_id") long event_id) {
 
-        if (newRegistration.getEventId() != event_id || newRegistration.getRegistrationDate() == null
-                || newRegistration.getRegistrationNotes() == null) {
+        if (newRegistration.getEvent_id() != event_id || newRegistration.getRegistration_date() == null
+                || newRegistration.getNotes() == null) {
             return ResponseEntity.badRequest().build();
         }
 

@@ -34,30 +34,6 @@ public class Registrations {
         // Default constructor
     }
 
-    public Registrations(long id, long event_id, long customer_id, Date registration_date, String notes) {
-        this.id = id;
-        this.event_id = event_id;
-        this.customer_id = customer_id;
-        this.registration_date = registration_date;
-        this.notes = notes;
-    }
-
-    public long getEventId() {
-        return event_id;
-    }
-
-    public void setEventId(long event_id) {
-        this.event_id = event_id;
-    }
-
-    public long getCustomerId() {
-        return customer_id;
-    }
-
-    public void setCustomerId(long customer_id) {
-        this.customer_id = customer_id;
-    }
-
     public long getId() {
         return id;
     }
@@ -66,19 +42,35 @@ public class Registrations {
         this.id = id;
     }
 
-    public Date getRegistrationDate() {
+    public long getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(long event_id) {
+        this.event_id = event_id;
+    }
+
+    public long getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(long customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public Date getRegistration_date() {
         return registration_date;
     }
 
-    public void setRegistrationDate(Date registration_date) {
+    public void setRegistration_date(Date registration_date) {
         this.registration_date = registration_date;
     }
 
-    public String getRegistrationNotes() {
+    public String getNotes() {
         return notes;
     }
 
-    public void setRegistrationNotes(String notes) {
+    public void setNotes(String notes) {
         this.notes = notes;
     }
 
